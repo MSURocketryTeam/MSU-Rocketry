@@ -15,24 +15,26 @@ class State:
 
         # rocket has been armed
         self.ARMED = 1 # sending this number means we are entering this state
-        self.ARMED_BIT = 0 # this state's place in the 8-bit binary integer
 
         # rocket is accelerating (powered flight)
         self.LIFTOFF = 2
-        self.LIFTOFF_BIT = 1
+
+        self.BURNOUT = 4
 
         # we have reached apogee, deploy drogue parachute
-        self.APOGEE = 4
-        self.APOGEE_BIT = 2
+        self.APOGEE = 8
 
         # we are at an altitude of 1000 feet, deploy main parachute
-        self.MAIN_DEPLOY = 8
-        self.MAIN_DEPLOY_BIT = 3
+        self.MAIN_DEPLOY = 16
 
-        # recovery mode
-        self.RECOVERY = 16
-        self.RECOVERY_BIT  = 4
+        #we are descending
+        self.DESCENT = 32
 
+        #we have landed
+        self.LANDED = 64
+
+        self.state = self.IDLE
+    
     # Set state
     def set(self, new_state):
         self.state = new_state
@@ -40,35 +42,32 @@ class State:
     # Add state (input each state as separate parameter)
     def add(self, *new_states):
         for new_state in new_states:
-            self.state += new_state
+            self.state |= new_state
 
-    # Remove state
-    def remove(self, *new_states):
-        for new_state in new_states:
-            self.state -= new_state
+    def remove(self, *remove_state):
+        for state in remove_state:
+            self.state &= ~state
 
+    #define each state
+    def lift_off(self, acceleration):
+        if acceleration > 0:
+            self.set(self.LIFTOFF)
 
-    def lift_off(self):
-        while self.mpu.acceleration[1] > 0:
+    def burnout(self, acceleration):
+        if acceleration < 0:
+            self.set(self.BURNOUT)
 
-    def burnout(self):
-        prev = 0
-        burnout = True
-        while burnout:
-            height = [] #create a list of height
-            for i, n in enumerate(height): #record 5 values
-                time.sleep(1) #pauses for 1 sec
-                initial = 0
-                final = 0
-                if i == 0 or i == 1:
-                    inital += n
-                else:
-                    final += n
-            
-            current = (final - initial) / 2
-            if current < prev: #if current velocity is less than previous, then burnout
-                burnout = False
-            prev = current
+    def apogee(self, altitude):
+        if 9900 <= altitude <= 10100:
+            self.set(self.APOGEE)
+
+    def descent(self, acceleration):
+        if acceleration < 0:
+            self.set(self.DESCENT)
+
+    def landed(self, acceleration):
+        if acceleration == 0:
+            self.set(self.LANDED)
                 
                 
                 

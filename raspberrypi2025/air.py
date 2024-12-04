@@ -32,6 +32,8 @@ state = State()
 current_state = "idle"
 
 # Main loop
+
+rocket_state = State()
 while True:
 
     #######################################################################
@@ -42,3 +44,29 @@ while True:
     #TODO: make this a range instead of exactly 9.8
     # if sensors.mpu.acceleration[1] == 9.8:
     sensors.start_sensors()
+
+
+    acceleration = sensors.mpu.acceleration[1]
+    altitude = sensors.mpl.altitude
+
+    #for each if statement, check if the previous state is active, and next state is inactive
+    #call function that checks if state exists
+
+    if (rocket_state.state & rocket_state.LIFTOFF) == 0:
+        rocket_state.lift_off(acceleration)
+
+    elif (rocket_state.state & rocket_state.LIFTOFF) != 0 and (rocket_state.state & rocket_state.BURNOUT == 0):
+        rocket_state.burnout(acceleration)
+
+    elif (rocket_state.state & rocket_state.BURNOUT) != 0 and (rocket_state.state & rocket_state.APOGEE) == 0:
+        rocket_state.descent(acceleration)
+
+    elif (rocket_state.state & rocket_state.APOGEE) != 0 and (rocket_state.state & rocket_state.DESCENT) == 0:
+        rocket_state.apogee(altitude)
+
+    elif (rocket_state.state & rocket_state.MAIN_DEPLOY != 0):
+        rocket_state.descent(acceleration)
+
+
+
+
