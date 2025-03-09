@@ -1,0 +1,20 @@
+body{
+  background-color: black;
+}
+
+.title h1{
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  font-family: 'Poppins';
+}
+
+.data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 4rem;
+}
