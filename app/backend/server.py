@@ -1,49 +1,50 @@
-from flask import Flask, render_template, jsonify
-from flask_cors import CORS 
+from flask import Flask, jsonify
+from flask_cors import CORS
 import serial
 import threading
-import ast 
+import ast
+import logging
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)
 
 SERIAL_PORT = "/dev/tty.usbserial-A10NX6XN"
-BAUD_RATE = 9600 
+BAUD_RATE = 9600
+
+latest_list = []
 
 ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
 
-latest_data = "Waiting for data..."
-
-# Function to read data through serial ports
 def read_xbee_data():
-    global latest_data
+    global latest_list
     while True:
+        data = ser.readline()
+        decoded = data.decode('utf-8').strip()
         try:
-            data = ser.readline().decode('utf-8', errors='ignore').strip()
-            print(f"Raw Data Received: {repr(data)}")  # Debugging
-            if data:
-                try:
-                    latest_data = ast.literal_eval(data)  # Convert string to a Python list
-                    print("Parsed Data:", latest_data)  # Debugging
-                except (SyntaxError, ValueError):
-                    print("Invalid Data:", data)  # Debugging
-        except Exception as e:
-            print("Error:", e)
+            parsed = ast.literal_eval(decoded)
+            if isinstance(parsed, list):
+                latest_list = parsed
+                print(parsed)  # just the values
+            else:
+                latest_list = []
+        except Exception:
+            latest_list = []
 
-# Start background thread to allow continous requests while data is processed
-thread = threading.Thread(target=read_xbee_data, daemon=True)
-thread.start()
+# Start background thread
+threading.Thread(target=read_xbee_data, daemon=True).start()
 
-# Define frontend
-@app.route("/")
-def index():
-    return render_template("index.html")
-
-# Returns latest data
 @app.route("/data")
 def get_data():
-    return jsonify({"xbee_data": latest_data})
+    return jsonify({
+        "accx": latest_list[0] if len(latest_list) >= 1 else None,
+        "accy": latest_list[1] if len(latest_list) >= 2 else None,
+        "accz": latest_list[2] if len(latest_list) >= 3 else None,
+        "altitude": latest_list[3] if len(latest_list) >= 4 else None,
+        "temperature": latest_list[4] if len(latest_list) >= 5 else None,
+    })
+
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5002, debug=True) # Make sure this matches with react port
-
+    app.run(host="0.0.0.0", port=5002, debug=True)

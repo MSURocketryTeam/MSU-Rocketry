@@ -4,15 +4,16 @@
     display: flex; 
     flex-direction: column;
     align-items: center;
-    width: 25rem;
-    height: 25rem;
+    width: 15rem;
+    height: 15rem;
     background-color: #19453b;
     border-radius: 20px;
   }
   
   .card-title {
     font-family: 'Poppins';
-    font-size: 2rem;
+    font-size: 1.5rem;
+    text-align: center; 
     color: white;
   }
   
