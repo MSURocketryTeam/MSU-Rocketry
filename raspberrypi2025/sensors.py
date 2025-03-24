@@ -15,8 +15,7 @@ class Sensors:
 
     def __init__(self):
         self.filename = "data.csv"
-        fields = ["X Acc.", "Y Acc.", "Temperature", "Altitude"]
-
+        fields = ["X Acc.", "Y Acc.", "Z Acc.", "Altitude", "Temperature"]
         # Open file for writing
         with open(self.filename, "w") as fp:
             csvwriter = csv.writer(fp, delimiter=',')
@@ -40,7 +39,27 @@ class Sensors:
         self.gps.send_command(b"PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
         self.gps.send_command(b"PMTK220,1000")
 
-    def sensors_start(self):
+    def getAccelerationX(self):
+        acceleration = (round(self.mpu.acceleration[0], 3))
+        return acceleration
+
+    def getAccelerationY(self):
+        acceleration = (round(self.mpu.acceleration[1], 3))
+        return acceleration
+
+    def getAccelerationZ(self):
+        acceleration = (round(self.mpu.acceleration[2], 3))
+        return acceleration
+
+    def getAltitude(self):
+        altitude = (round(self.mpl.altitude, 3))
+        return altitude
+
+    def getTemp(self):
+        temp = (round(self.mpl.temperature, 3))
+        return temp
+
+    def sensors_send(self):
         """
         Start collecting and transmitting sensor data.
         """
@@ -49,18 +68,21 @@ class Sensors:
             self.gps.update()
             lat = self.gps.latitude
             long = self.gps.longitude
-            altitude = round(self.mpl.altitude, 3)
-            temperature = round(self.mpl.temperature, 3)
-            accX = round(self.mpu.acceleration[0], 3)
-            accY = round(self.mpu.acceleration[1], 3)
-            accZ = round(self.mpu.acceleration[2], 3)
+            accX = self.getAccelerationX()
+            accY = self.getAccelerationY()
+            accZ = self.getAccelerationZ()
+            altitude = self.getAltitude()
+            temperature = self.getTemp()
+
             data = [accX, accY, accZ, altitude, temperature]
-           # data_string = f"{data}\n"
-           # print(data_string)
-           # self.serial_port.write(data_string.encode())
-           # self.serial_port.flush()
+
+            # Write to CSV file
+            with open(self.filename, "a") as fp:
+                csvwriter = csv.writer(fp, delimiter=',')
+                csvwriter.writerow(data)
+
             data_string = json.dumps(data)
-            print(f"Sending: {data_string.strip()}")  # strip to keep the log clean
+            print(f"Sending: {data_string.strip()}")
             self.serial_port.write(data_string.encode("utf-8"))
             self.serial_port.flush()
         except Exception as e:
