@@ -6,20 +6,20 @@
     align-items: center;
     width: 15rem;
     height: 15rem;
-    background-color: #19453b;
+    background-color: #FFFF;
     border-radius: 20px;
   }
   
   .card-title {
-    font-family: 'Poppins';
+    font-family: 'JetBrains';
     font-size: 1.5rem;
     text-align: center; 
-    color: white;
+    color: black;
   }
   
   .card-data {
-    font-family: 'Poppins';
+    font-family: 'JetBrains';
     font-size: 1.5rem;
-    color: white;
+    color: black;
   }
   

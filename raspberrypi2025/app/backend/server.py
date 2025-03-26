@@ -8,7 +8,7 @@ import logging
 app = Flask(__name__)
 CORS(app)
 
-SERIAL_PORT = "/dev/tty.usbserial-A10NX6XN"
+SERIAL_PORT = "COM3"
 BAUD_RATE = 9600
 
 latest_list = []

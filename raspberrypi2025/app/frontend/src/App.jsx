@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 import { Card } from "./components/Card.jsx";
+import { Stages } from "./components/Stages.jsx";
 
 function App() {
   const [sensorData, setSensorData] = useState({
@@ -28,20 +29,25 @@ function App() {
   }, []);
 
   return (
-    <>
-      <div className="title">
-        <h1>MSU Rocketry Ground Station</h1>
-      </div>
-
+    <body>
       <div className="data">
+        <Stages text="Test" />
+      </div>
+    </body>
+  );
+}
+
+export default App;
+
+/*
+ <div className="title">
+        <h1>MSU Rocketry Ground Station</h1>
+  </div>
+  div className="data">
         <Card title="Acceleration X" description={sensorData.accx ?? "Loading..."} />
         <Card title="Acceleration Y" description={sensorData.accy ?? "Loading..."} />
         <Card title="Acceleration Z" description={sensorData.accz ?? "Loading..."} />
         <Card title="Altitude" description={sensorData.altitude ?? "Loading..."} />
         <Card title="Temperature" description={sensorData.temperature ?? "Loading..."} />
       </div>
-    </>
-  );
-}
-
-export default App;
+ */

@@ -1,5 +1,6 @@
 body{
-  background-color: white;
+  background-color: #18453B;
+  font-family: 'JetBrains';
 }
 
 .title h1{
@@ -8,9 +9,9 @@ body{
   color: white;
   margin-top: 4rem;
   margin-bottom: 4rem;
-  font-family: 'Poppins';
 }
 
+/*
 .data {
   display: flex;
   flex-direction: row;
@@ -18,3 +19,4 @@ body{
   flex-wrap: wrap;
   gap: 4rem;
 }
+*/
