@@ -11,30 +11,34 @@ export const Stages = ({
     landedTime,
  }) => {
     return (
-        <div className="stage-container">
-            <div className="stage-title">
-                Stage of Flight
-            </div>
-            <ul className="data">
-                <ol>
-                    Lift Off: <span className="time">{liftOffTime ?? "0.00.00"}</span>
-                </ol>
-                <ol>
-                    Burn Out: <span className="time">{burnOutTime ?? "0.00.00"}</span>
-                </ol>
-                <ol>
-                    Apogee Main Parachute: <span className="time">{apogeeParachuteTime ?? "0.00.00"}</span>
-                </ol>
-                <ol>
-                    Air Brake: <span className="time">{airBrakeTime ?? "0.00.00"}</span>
-                </ol>
-                <ol>
-                    Drogue Parachute: <span className="time">{drogueParachuteTime ?? "0.00.00"}</span>
-                </ol>
-                <ol>
-                    Landed: <span className='time'>{landedTime ?? "0.00.00"}</span>
-                </ol>
-            </ul>
+      <div className="row">
+        <div className="panel">
+          <h2>Stages of Flight</h2>
+          <div className="data-row">
+            <span>Lift Off:</span>
+            {liftOffTime ? <span className="green">liftOffTime</span> : <span className="red">0.00.00</span>}
+          </div>
+          <div className="data-row">
+            <span>Burn Out:</span>
+            {burnOutTime ? <span className="green">burnOutTime</span> : <span className="red">0.00.00</span>}
+          </div>
+          <div className="data-row">
+            <span>Apogee Main Parachute:</span>
+            {apogeeParachuteTime ? <span className="green">agogeeParachuteTime</span> : <span className="red">0.00.00</span>}
+          </div>
+          <div className="data-row">
+            <span>Air Brake:</span>
+            {airBrakeTime ? <span className="green">airBrakeTime</span> : <span className="red">0.00.00</span>}
+          </div>
+          <div className="data-row">
+            <span>Drogue Parachute:</span>
+            {drogueParachuteTime ? <span className="green">drogueParachuteTime</span> : <span className="red">0.00.00</span>}
+          </div>
+          <div className="data-row">
+            <span>Landed:</span>
+            {landedTime ? <span className="green">landedTime</span> : <span className="red">0.00.00</span>}
+          </div>
         </div>
+      </div>
     );
 };

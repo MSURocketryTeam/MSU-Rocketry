@@ -1,42 +1,35 @@
-.stage-container {
-    display: flex; 
-    flex-direction: column;
-    width: 846px;
-    height: 507px;
+.panel {
     background-color: black;
-    border-radius: 10px;
+    border-radius: 5px;
+    padding: 15px;
+    flex: 1;
 }
 
-.stage-title {
-    color: white;
-    width: 413px;
-    height: 60px;
-    border: 2px;
-    text-align: center;
-    font-size: 43px;
-    font-weight: 400;
-    line-height: 140%;
-    letter-spacing: 0%;
+.row {
+  display: flex;
+  width: 500px;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+  
+h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: normal;
 }
 
-.time {
-    width: 164px;
-    height: 55px;
-    top: -803px;
-    left: 189px;
-    border: 1px;
-    color: red;
-    text-align: right;
+.data-row{
+  display: flex; 
+  justify-content: space-between;
+  margin-bottom: 8px;
 }
 
-ul ol {
-    width: 700px;
-    height: 55px;
-    border: 2px;
-    text-align: left;
-    color: white;
-    font-weight: 400;
-    font-size: 39px;
-    line-height: 140%;
-    letter-spacing: 0%;
+.green {
+  color: #26FF00;
 }
+  
+.red {
+  color: #E35D5D;
+}
+  

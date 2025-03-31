@@ -3,6 +3,9 @@ import axios from "axios";
 import "./App.css";
 import { Card } from "./components/Card.jsx";
 import { Stages } from "./components/Stages.jsx";
+import { Acceleration } from "./components/Acceleration.jsx";
+import { Location } from "./components/Location.jsx";
+import { Temperature, Force } from "./components/Temp-Force.jsx";
 
 function App() {
   const [sensorData, setSensorData] = useState({
@@ -30,8 +33,18 @@ function App() {
 
   return (
     <body>
-      <div className="data">
-        <Stages text="Test" />
+      <div className="container">
+        <Stages></Stages>
+
+        <div className="row">
+          <Acceleration></Acceleration>
+          <Location></Location>
+        </div>
+
+        <div className="row">
+          <Temperature></Temperature>
+          <Force></Force>
+        </div>
       </div>
     </body>
   );
