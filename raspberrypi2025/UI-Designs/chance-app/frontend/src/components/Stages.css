@@ -1,0 +1,57 @@
+
+
+
+.container-stages{
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    background-color: #19453b;
+    width: 40rem;
+    height: 20rem;
+    border-radius: 20px;
+    padding: 1rem;
+}
+
+.stage-title{
+    width: 100%;
+
+}
+
+.container-stages h1{
+    font-family: 'Poppins';
+    font-size: 2rem;
+    color:white;
+    margin: 0;
+}
+
+.stages{
+    display: flex;
+    flex-direction: row;
+}
+
+.stages-list {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: 600;
+    list-style: none;
+    padding: 0;
+  }
+  
+.stages-list li {
+    font-size: 1.5rem;
+
+}
+
+.clock-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+}
+
+.clock-list {
+    display: flex;
+    flex-direction: column;
+
+}

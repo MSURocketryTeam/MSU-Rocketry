@@ -1,0 +1,25 @@
+
+.clock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #19453b;
+
+}
+
+.display{
+    font-size: 1.5rem;
+    font-family: 'Poppins';
+    font-weight: 600;
+    color: white;
+}
+
+.controls button{
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.start-button{
+    background-color: green;
+}
