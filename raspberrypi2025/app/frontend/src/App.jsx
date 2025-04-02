@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-import { Card } from "./components/Card.jsx";
+import { Data } from "./components/Data.jsx";
+import { Stages } from "./components/Stages.jsx";
+import { Graph } from "./components/Graph.jsx";
 
 function App() {
   const [sensorData, setSensorData] = useState({
@@ -29,19 +31,22 @@ function App() {
 
   return (
     <>
-      <div className="title">
-        <h1>MSU Rocketry Ground Station</h1>
-      </div>
-
-      <div className="data">
-        <Card title="Acceleration X" description={sensorData.accx ?? "Loading..."} />
-        <Card title="Acceleration Y" description={sensorData.accy ?? "Loading..."} />
-        <Card title="Acceleration Z" description={sensorData.accz ?? "Loading..."} />
-        <Card title="Altitude" description={sensorData.altitude ?? "Loading..."} />
-        <Card title="Temperature" description={sensorData.temperature ?? "Loading..."} />
+      <div className="container">
+          <div className="container-raw-data">
+            <Data title="Sensor Data" accX = {sensorData.accx ?? "Waiting..."} accY = {sensorData.accy ?? "Waiting..."} accZ = {sensorData.accz ?? "Waiting..."} alt = {sensorData.altitude ?? "Waiting..."} temp = {sensorData.temperature ?? "Waiting..."}/>
+          </div>
+          <Graph/>
+          <Graph/>
+          <div className="container-track-stages">
+            <Stages data={sensorData} />
+          </div>
+          <Graph/>
+          <Graph/>
       </div>
     </>
   );
 }
 
 export default App;
+
+

@@ -1,0 +1,7 @@
+.container-graph{
+    display: flex;
+    width: 22rem;
+    height: 22rem;
+    background-color: #19453b;
+    border-radius: 20px;
+}
