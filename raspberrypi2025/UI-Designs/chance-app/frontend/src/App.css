@@ -1,16 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 body{
-  background-color: #1E201E;
+  background-color: #121212;
 }
 
 .container{
   display:flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  gap: 4rem;
   margin-top: 2rem;
-  gap: 2rem;
-  justify-content: space-evenly;
+  margin-bottom: 2rem;
 }
 
 .title h1{
@@ -26,4 +25,77 @@ body{
   display: flex;
   align-content: left;
 
+}
+
+.sidebar{
+  display: flex;
+  flex-direction: column;
+  width: 12rem;
+  height: 48rem;
+  background-color: #292929;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.sidebar h1{
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: 'Poppins';
+}
+
+.sidebar-links{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar-links a{
+  text-decoration: none;
+  color: white;
+  
+}
+
+.data{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 75rem;
+  height: 10rem;
+}
+
+.stages-graphs{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 75rem;
+}
+
+.stages{
+  display: flex;
+  flex-direction: column;
+  width: 33rem;
+  height: 40rem;
+  background-color: #292929;
+  border-radius: 1rem;
+}
+
+.graphs-container{
+  display: flex;
+  flex-direction: column;
+  width: 38rem;
+  height: 42rem;
+  border-radius: 1rem;
+  gap: 3.8rem;
+}
+
+.graphs{
+  display: flex;
+  flex-direction: column;
+  width: 38rem;
+  height: 18rem;
+  background-color: #292929;
+  border-radius: 1rem;
 }

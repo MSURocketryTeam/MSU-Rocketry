@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-import { Data } from "./components/Data.jsx";
-import { Stages } from "./components/Stages.jsx";
-import { Graph } from "./components/Graph.jsx";
+import { Sensor } from "./components/Sensor.jsx";
+import logo from "./images/logo-full.png";
+
 
 function App() {
   const [sensorData, setSensorData] = useState({
@@ -32,16 +32,38 @@ function App() {
   return (
     <>
       <div className="container">
-          <div className="container-raw-data">
-            <Data title="Sensor Data" accX = {sensorData.accx ?? "Waiting..."} accY = {sensorData.accy ?? "Waiting..."} accZ = {sensorData.accz ?? "Waiting..."} alt = {sensorData.altitude ?? "Waiting..."} temp = {sensorData.temperature ?? "Waiting..."}/>
+        <div className="sidebar">
+          <img src={logo} alt="logo"/>
+          <h1>MSU Rocketry</h1>
+          <div className="sidebar-links">
+            <a href="#">Home</a>
+            <a href="#">Sensor Data</a>
+            <a href="#">Graphs</a>
+            <a href="#">Raw Data</a>
           </div>
-          <Graph/>
-          <Graph/>
-          <div className="container-track-stages">
-            <Stages data={sensorData} />
+        </div>
+        <div className="data-container">
+          <div className="data">
+            <Sensor title="Acceleration X" data={sensorData.accx} />
+            <Sensor title="Acceleration Y" data={sensorData.accy} />
+            <Sensor title="Acceleration Z" data={sensorData.accz} />
+            <Sensor title="Altitude" data={sensorData.altitude} />
+            <Sensor title="Temperature" data={sensorData.temperature} />
           </div>
-          <Graph/>
-          <Graph/>
+          <div className="stages-graphs">
+            <div className="stages">
+
+            </div>
+            <div className="graphs-container">
+              <div className="graphs">
+
+              </div>
+              <div className="graphs">
+
+              </div>
+            </div>  
+          </div>
+        </div>
       </div>
     </>
   );
