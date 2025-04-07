@@ -1,0 +1,128 @@
+.stage-tracker {
+  padding: 2rem;
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-tracker h2 {
+  margin: 0 0 2rem 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.stages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  flex-grow: 1;
+}
+
+.stage-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 1.2rem;
+  padding-right: 1rem;
+}
+
+.stage-indicator {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1e1e1e;
+  border: 2px solid #333;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.stage-indicator.completed {
+  background-color: #4CAF50;
+  border-color: #45a049;
+}
+
+.stage-indicator.current {
+  background-color: #2196F3;
+  border-color: #1976D2;
+  animation: pulse 2s infinite;
+}
+
+.stage-indicator .checkmark {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.stage-indicator .current-dot {
+  width: 1rem;
+  height: 1rem;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.stage-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  color: white;
+  flex-grow: 1;
+}
+
+.stage-time {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  color: #888;
+  min-width: 90px;
+  text-align: right;
+}
+
+.stage-time.completed {
+  color: #4CAF50;
+}
+
+.stage-time.current {
+  color: #2196F3;
+}
+
+.stage-time .clock {
+  display: inline-block;
+}
+
+.stage-time .display {
+  font-family: 'Poppins', monospace;
+  font-size: 1.1rem;
+  color: inherit;
+}
+
+.placeholder-time {
+  font-family: 'Poppins', monospace;
+  font-size: 1.1rem;
+  color: inherit;
+  opacity: 0.5;
+}
+
+.stage-connector {
+  position: absolute;
+  left: 1.25rem;
+  top: 2.5rem;
+  width: 2px;
+  height: calc(100% + 1.2rem);
+  background-color: #333;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(33, 150, 243, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
+  }
+} 
