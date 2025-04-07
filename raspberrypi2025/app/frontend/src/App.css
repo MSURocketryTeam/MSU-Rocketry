@@ -1,15 +1,24 @@
 body{
-  background-color: white;
+/* MacBook Pro 14" - 1 */
+
+position: relative;
+width: 1512px;
+height: 982px;
+
+background: #18453B;
+
+
 }
 
-.title h1{
-  display: flex;
-  justify-content: center;
-  color: white;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-  font-family: 'Poppins';
+.title{
+/* MSU Rocketry */
+text-align: center;
+margin-top: 2vh;
+font-size: clamp(2rem, 5vw, 3rem);
+color: #ffffff;
+font-weight: 700;
 }
+
 
 .data {
   display: flex;
@@ -17,4 +26,52 @@ body{
   justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 4rem;
+}
+
+.flight-data {
+/* Flight Data */
+
+position: absolute;
+width: 968px;
+height: 483px;
+left: 19px;
+top: 87px;
+
+
+}
+
+.time{
+/* Time */
+
+position: absolute;
+width: 429px;
+height: 112px;
+left: 1043px;
+top: 20px;
+
+
+
+}
+.graphs{
+/* Graphs */
+
+position: absolute;
+width: 453px;
+height: 795px;
+left: 1030px;
+top: 154px;
+
+
+
+}
+.map{
+  /* Map */
+
+position: absolute;
+width: 883px;
+height: 363px;
+left: 57px;
+top: 599px;
+
+
 }
