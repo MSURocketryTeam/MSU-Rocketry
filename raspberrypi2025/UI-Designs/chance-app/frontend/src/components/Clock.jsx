@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import "./Clock.css";
 
-function Clock(){
+function Clock({ stageStatus = 'pending', autoStart = false }){
     
     const [isRunning, setIsRunning] = useState(false);
     const [elapsedTime, setElapsedTime] = useState(0)
@@ -9,33 +9,54 @@ function Clock(){
     const startTimeRef = useRef(0);
 
     useEffect(() => {
+        if (autoStart && !isRunning) {
+            start();
+        }
+    }, [autoStart]);
 
+    useEffect(() => {
         if(isRunning) {
             intervalIdRef.current = setInterval(() => {
                 setElapsedTime(Date.now() - startTimeRef.current);
             }, 10);
-
         }
 
         return () => {
-            clearInterval(intervalIdRef.current);
+            if (intervalIdRef.current) {
+                clearInterval(intervalIdRef.current);
+            }
         }
-
     }, [isRunning]);
 
-    function start() {
-        setIsRunning(true);
-        startTimeRef.current = Date.now() - elapsedTime;
+    useEffect(() => {
+        // Stop the clock when stage is current or completed
+        if ((stageStatus === 'current' || stageStatus === 'completed') && isRunning) {
+            stop();
+        }
+    }, [stageStatus, isRunning]);
 
+    function start() {
+        if (!isRunning) {
+            setIsRunning(true);
+            startTimeRef.current = Date.now() - elapsedTime;
+        }
     }
 
     function stop() {
-        setIsRunning(false);
+        if (isRunning) {
+            setIsRunning(false);
+            if (intervalIdRef.current) {
+                clearInterval(intervalIdRef.current);
+            }
+        }
     }
 
     function reset() {
         setElapsedTime(0);
-        setIsRunning(false)
+        setIsRunning(false);
+        if (intervalIdRef.current) {
+            clearInterval(intervalIdRef.current);
+        }
     }
 
     function formatTime(){
@@ -52,7 +73,7 @@ function Clock(){
     }
 
     return (
-      <div className="clock">
+      <div className={`clock ${stageStatus}`}>
         <div className="display">{formatTime()}</div>
         {/* <div className="controls">
             <button onClick={start} className="start-button">Start</button>

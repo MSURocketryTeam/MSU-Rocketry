@@ -48,8 +48,8 @@
 }
 
 .stage-indicator.current {
-  background-color: #2196F3;
-  border-color: #1976D2;
+  background-color: #4CAF50;
+  border-color: #45a049;
   animation: pulse 2s infinite;
 }
 
@@ -75,7 +75,7 @@
 .stage-time {
   font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
-  color: #888;
+  color: white;
   min-width: 90px;
   text-align: right;
 }
@@ -85,7 +85,7 @@
 }
 
 .stage-time.current {
-  color: #2196F3;
+  color: #f44336;
 }
 
 .stage-time .clock {
@@ -117,12 +117,12 @@
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.4);
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
   }
   70% {
-    box-shadow: 0 0 0 12px rgba(33, 150, 243, 0);
+    box-shadow: 0 0 0 12px rgba(76, 175, 80, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
   }
 } 

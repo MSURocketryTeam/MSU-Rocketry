@@ -12,17 +12,18 @@ const stages = [
   { id: 'landed', label: 'Landed' }
 ];
 
-const StageTracker = ({ currentStage }) => {
-  const [stageClocks, setStageClocks] = useState({});
+const StageTracker = ({ currentStage, isArmed }) => {
+  const [allClocksStarted, setAllClocksStarted] = useState(false);
   const prevStageRef = useRef(null);
 
   useEffect(() => {
+    if (isArmed && !allClocksStarted) {
+      setAllClocksStarted(true);
+    }
+  }, [isArmed, allClocksStarted]);
+
+  useEffect(() => {
     if (currentStage && currentStage !== prevStageRef.current) {
-      // Start the clock for the current stage
-      setStageClocks(prev => ({
-        ...prev,
-        [currentStage]: true
-      }));
       prevStageRef.current = currentStage;
     }
   }, [currentStage]);
@@ -53,11 +54,10 @@ const StageTracker = ({ currentStage }) => {
             </div>
             <div className="stage-label">{stage.label}</div>
             <div className={`stage-time ${getStageStatus(stage.id)}`}>
-              {stageClocks[stage.id] ? (
-                <Clock />
-              ) : (
-                <span className="placeholder-time">00:00:00</span>
-              )}
+              <Clock 
+                stageStatus={getStageStatus(stage.id)}
+                autoStart={allClocksStarted}
+              />
             </div>
             {index < stages.length - 1 && <div className="stage-connector"></div>}
           </div>

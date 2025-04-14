@@ -1,17 +1,29 @@
-
 .clock{
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: #19453b; */
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: color 0.3s ease;
+}
 
+.clock.pending .display {
+    color: #f44336;
+}
+
+.clock.current .display {
+    color: #4CAF50;
+}
+
+.clock.completed .display {
+    color: #4CAF50;
 }
 
 .display{
     font-size: 1.5rem;
     font-family: 'Poppins';
     font-weight: 600;
-    color: white;
+    color: #f44336;
 }
 
 .controls button{

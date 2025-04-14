@@ -8,8 +8,7 @@ body{
   display:flex;
   flex-direction: row;
   gap: 4rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 1.5rem;
 }
 
 .title h1{
@@ -53,6 +52,10 @@ body{
 .sidebar-links a{
   text-decoration: none;
   color: white;
+}
+
+.data-container {
+  height: 50rem;
 }
 
 .data{

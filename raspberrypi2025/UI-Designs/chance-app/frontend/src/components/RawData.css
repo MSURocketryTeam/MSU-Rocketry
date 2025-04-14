@@ -1,0 +1,62 @@
+.raw-data-container {
+  width: 70rem;
+  height: 46rem;
+  padding: 2rem;
+  background-color: #292929;
+  border-radius: 1rem;
+}
+
+.raw-data-container h1 {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+.table-container {
+  max-height: 40rem;
+  overflow-y: auto;
+  border-radius: 0.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #444;
+}
+
+th {
+  background-color: #333;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+tbody tr:hover {
+  background-color: #333;
+}
+
+/* Custom scrollbar */
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #888;
+} 
